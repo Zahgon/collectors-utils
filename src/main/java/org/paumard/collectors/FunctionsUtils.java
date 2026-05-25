@@ -13,24 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.paumard.collectors;
 
 import org.paumard.streams.StreamsUtils;
-
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
-
 import static java.util.stream.Collectors.*;
-
 
 /**
  * Created by José
  */
 public class FunctionsUtils {
-
 
     /**
      * <p>A convenient function that extracts a max from a stream using a comparator.</p>
@@ -40,8 +35,7 @@ public class FunctionsUtils {
      * @return the function
      */
     public static <E> Function<Stream<E>, Optional<E>> maxBy(Comparator<? super E> comparator) {
-        Objects.requireNonNull(comparator);
-        return stream -> stream.max(comparator);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -52,7 +46,7 @@ public class FunctionsUtils {
      * @return the function
      */
     public static <K, V> Function<Map<K, V>, Stream<Map.Entry<K, V>>> toStreamOfEntries() {
-        return map -> map.entrySet().stream();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -64,7 +58,7 @@ public class FunctionsUtils {
      * @return the function
      */
     public static <E> Function<Stream<E>, Stream<E>> takeMaxValues(int n, Comparator<? super E> comparator) {
-        return stream -> StreamsUtils.filteringMaxValues(stream, n, comparator);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -74,7 +68,7 @@ public class FunctionsUtils {
      * @return the function
      */
     public static <E> Function<Stream<E>, List<E>> collectToList() {
-        return stream -> stream.collect(toList());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -84,7 +78,7 @@ public class FunctionsUtils {
      * @return the function
      */
     public static <E> Function<Stream<E>, Set<E>> collectToSet() {
-        return stream -> stream.collect(toSet());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -95,11 +89,8 @@ public class FunctionsUtils {
      * @param <M>                The type of the collection
      * @return the function
      */
-    public static <M extends Collection<E>, E> Function<Stream<E>, M>
-    collectToCollection(Supplier<M> collectionSupplier) {
-        Objects.requireNonNull(collectionSupplier);
-
-        return stream -> stream.collect(toCollection(collectionSupplier));
+    public static <M extends Collection<E>, E> Function<Stream<E>, M> collectToCollection(Supplier<M> collectionSupplier) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -111,7 +102,6 @@ public class FunctionsUtils {
      * @return the function
      */
     public static <E> Function<Stream<E>, Stream<E>> takeAllMaxElements(Comparator<? super E> comparator) {
-        Objects.requireNonNull(comparator);
-        return stream -> StreamsUtils.filteringAllMax(stream, comparator);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

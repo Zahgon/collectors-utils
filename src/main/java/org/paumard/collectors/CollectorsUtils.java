@@ -13,9 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.paumard.collectors;
-
 
 import java.util.Collection;
 import java.util.Comparator;
@@ -29,7 +27,6 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collector;
 import java.util.stream.Stream;
-
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.counting;
@@ -65,18 +62,8 @@ public class CollectorsUtils {
      * @param <V>          the type of the values
      * @return a collector that returns the first found max entry in a {@link Optional}
      */
-    public static <T, K, V> Collector<T, ?, Optional<Map.Entry<K, V>>>
-    groupingByAndMaxBy(Function<? super T, ? extends K> keyExtractor,
-                       Collector<T, ?, V> downstream,
-                       Comparator<? super Map.Entry<K, V>> comparator) {
-        Objects.requireNonNull(keyExtractor);
-        Objects.requireNonNull(downstream);
-        Objects.requireNonNull(comparator);
-
-        return collectingAndThen(
-                groupingBy(keyExtractor, downstream),
-                FunctionsUtils.<K, V>toStreamOfEntries().andThen(maxBy(comparator))
-        );
+    public static <T, K, V> Collector<T, ?, Optional<Map.Entry<K, V>>> groupingByAndMaxBy(Function<? super T, ? extends K> keyExtractor, Collector<T, ?, V> downstream, Comparator<? super Map.Entry<K, V>> comparator) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -94,13 +81,8 @@ public class CollectorsUtils {
      * @param <V>          the type of the values
      * @return the collector
      */
-    public static <T, K, V extends Comparable<? super V>> Collector<T, ?, Optional<Map.Entry<K, V>>>
-    groupingByAndMaxByValue(Function<? super T, ? extends K> keyExtractor,
-                            Collector<T, ?, V> downstream) {
-        Objects.requireNonNull(keyExtractor);
-        Objects.requireNonNull(downstream);
-
-        return groupingByAndMaxBy(keyExtractor, downstream, Map.Entry.comparingByValue());
+    public static <T, K, V extends Comparable<? super V>> Collector<T, ?, Optional<Map.Entry<K, V>>> groupingByAndMaxByValue(Function<? super T, ? extends K> keyExtractor, Collector<T, ?, V> downstream) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -116,11 +98,8 @@ public class CollectorsUtils {
      * @param <V>        the type of the values
      * @return the collector
      */
-    public static <T, V extends Comparable<? super V>> Collector<T, ?, Optional<Map.Entry<T, V>>>
-    groupingBySelfAndMaxByValue(Collector<T, ?, V> downstream) {
-        Objects.requireNonNull(downstream);
-
-        return groupingByAndMaxBy(identity(), downstream, Map.Entry.comparingByValue());
+    public static <T, V extends Comparable<? super V>> Collector<T, ?, Optional<Map.Entry<T, V>>> groupingBySelfAndMaxByValue(Collector<T, ?, V> downstream) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -134,8 +113,7 @@ public class CollectorsUtils {
      * @return the collector
      */
     public static <T> Collector<T, ?, Optional<Map.Entry<T, Long>>> maxByCounting() {
-
-        return groupingByAndMaxBy(identity(), counting(), Map.Entry.comparingByValue());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -147,8 +125,7 @@ public class CollectorsUtils {
      * @return a {@link Collector} implementing the all max extraction in a given collection
      */
     public static <T> Collector<T, ?, Set<Map.Entry<T, Long>>> findMostFrequent() {
-
-        return groupingByAndAllMaxBy(identity(), counting(), Map.Entry.comparingByValue());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -160,8 +137,7 @@ public class CollectorsUtils {
      * @return a {@link Collector} implementing the all max extraction in a given collection
      */
     public static <T> Collector<T, ?, Stream<Map.Entry<T, Long>>> streamMostFrequent() {
-
-        return groupingByAndStreamAllMaxBy(identity(), counting(), Map.Entry.comparingByValue());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -178,10 +154,8 @@ public class CollectorsUtils {
      * @param <V>          the type of the values
      * @return the collector
      */
-    public static <T, V> Collector<T, ?, Optional<Map.Entry<V, Long>>>
-    groupingByAndMaxByCounting(Function<? super T, ? extends V> keyExtractor) {
-
-        return groupingByAndMaxBy(keyExtractor, counting(), Map.Entry.comparingByValue());
+    public static <T, V> Collector<T, ?, Optional<Map.Entry<V, Long>>> groupingByAndMaxByCounting(Function<? super T, ? extends V> keyExtractor) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -201,15 +175,8 @@ public class CollectorsUtils {
      * @param <V>             the type of the values
      * @return an optional wrapping the max entry
      */
-    public static <T, K, V> Collector<T, ?, Optional<Map.Entry<K, V>>>
-    groupingByAndMaxByValue(Function<? super T, ? extends K> keyExtractor,
-                            Collector<T, ?, V> downstream,
-                            Comparator<? super V> valueComparator) {
-        Objects.requireNonNull(keyExtractor);
-        Objects.requireNonNull(downstream);
-        Objects.requireNonNull(valueComparator);
-
-        return groupingByAndMaxBy(keyExtractor, downstream, Map.Entry.comparingByValue(valueComparator));
+    public static <T, K, V> Collector<T, ?, Optional<Map.Entry<K, V>>> groupingByAndMaxByValue(Function<? super T, ? extends K> keyExtractor, Collector<T, ?, V> downstream, Comparator<? super V> valueComparator) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -228,21 +195,8 @@ public class CollectorsUtils {
      * @param <V>          the type of the values
      * @return an optional wrapping the max entry
      */
-    public static <T, K, V> Collector<T, ?, List<Map.Entry<K, V>>>
-    groupingByAndMaxesBy(Function<? super T, ? extends K> keyExtractor,
-                         Collector<T, ?, V> downstream,
-                         int n,
-                         Comparator<? super Map.Entry<K, V>> comparator) {
-        Objects.requireNonNull(keyExtractor);
-        Objects.requireNonNull(downstream);
-        Objects.requireNonNull(comparator);
-
-        return collectingAndThen(
-                groupingBy(keyExtractor, downstream),
-                FunctionsUtils.<K, V>toStreamOfEntries()
-                        .andThen(takeMaxValues(n, comparator))
-                        .andThen(collectToList())
-        );
+    public static <T, K, V> Collector<T, ?, List<Map.Entry<K, V>>> groupingByAndMaxesBy(Function<? super T, ? extends K> keyExtractor, Collector<T, ?, V> downstream, int n, Comparator<? super Map.Entry<K, V>> comparator) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -267,20 +221,8 @@ public class CollectorsUtils {
      * @param <V>             the type of the values
      * @return a {@code Collector} implementing the all max extraction
      */
-    public static <T, K, V> Collector<T, ?, Set<Map.Entry<K, V>>>
-    groupingByAndAllMaxBy(Function<? super T, ? extends K> keyExtractor,
-                          Collector<T, ?, V> downstream,
-                          Comparator<Map.Entry<K, V>> entryComparator) {
-        Objects.requireNonNull(keyExtractor);
-        Objects.requireNonNull(downstream);
-        Objects.requireNonNull(entryComparator);
-
-        return collectingAndThen(
-                groupingBy(keyExtractor, downstream),
-                FunctionsUtils.<K, V>toStreamOfEntries()
-                        .andThen(takeAllMaxElements(entryComparator))
-                        .andThen(collectToSet())
-        );
+    public static <T, K, V> Collector<T, ?, Set<Map.Entry<K, V>>> groupingByAndAllMaxBy(Function<? super T, ? extends K> keyExtractor, Collector<T, ?, V> downstream, Comparator<Map.Entry<K, V>> entryComparator) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -300,22 +242,8 @@ public class CollectorsUtils {
      * @param <V>            the type of the values
      * @return a {@link Collector} implementing the all max extraction in a given collection
      */
-    public static <T, M extends Collection<Map.Entry<K, V>>, K, V> Collector<T, ?, M>
-    groupingByAndAllMaxBy(Function<? super T, ? extends K> keyExtractor,
-                          Supplier<M> resultSupplier,
-                          Collector<T, ?, V> downstream,
-                          Comparator<? super Map.Entry<K, V>> comparator) {
-        Objects.requireNonNull(keyExtractor);
-        Objects.requireNonNull(resultSupplier);
-        Objects.requireNonNull(downstream);
-        Objects.requireNonNull(comparator);
-
-        return collectingAndThen(
-                groupingBy(keyExtractor, downstream),
-                FunctionsUtils.<K, V>toStreamOfEntries()
-                        .andThen(takeAllMaxElements(comparator))
-                        .andThen(collectToCollection(resultSupplier))
-        );
+    public static <T, M extends Collection<Map.Entry<K, V>>, K, V> Collector<T, ?, M> groupingByAndAllMaxBy(Function<? super T, ? extends K> keyExtractor, Supplier<M> resultSupplier, Collector<T, ?, V> downstream, Comparator<? super Map.Entry<K, V>> comparator) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -333,19 +261,8 @@ public class CollectorsUtils {
      * @param <V>          the type of the values
      * @return a {@link Collector} implementing the all max extraction in a given collection
      */
-    public static <T, K, V> Collector<T, ?, Stream<Map.Entry<K, V>>>
-    groupingByAndStreamAllMaxBy(Function<? super T, ? extends K> keyExtractor,
-                                Collector<T, ?, V> downstream,
-                                Comparator<? super Map.Entry<K, V>> comparator) {
-        Objects.requireNonNull(keyExtractor);
-        Objects.requireNonNull(downstream);
-        Objects.requireNonNull(comparator);
-
-        return collectingAndThen(
-                groupingBy(keyExtractor, downstream),
-                FunctionsUtils.<K, V>toStreamOfEntries()
-                        .andThen(takeAllMaxElements(comparator))
-        );
+    public static <T, K, V> Collector<T, ?, Stream<Map.Entry<K, V>>> groupingByAndStreamAllMaxBy(Function<? super T, ? extends K> keyExtractor, Collector<T, ?, V> downstream, Comparator<? super Map.Entry<K, V>> comparator) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -364,15 +281,8 @@ public class CollectorsUtils {
      * @param <V>            the type of the values
      * @return a {@link Collector} implementing the all max extraction in a given collection
      */
-    public static <T, M extends Collection<Map.Entry<K, V>>, K, V extends Comparable<? super V>> Collector<T, ?, M>
-    groupingByAndAllMaxByValue(Function<? super T, ? extends K> keyExtractor,
-                               Supplier<M> resultSupplier,
-                               Collector<T, ?, V> downstream) {
-        Objects.requireNonNull(keyExtractor);
-        Objects.requireNonNull(resultSupplier);
-        Objects.requireNonNull(downstream);
-
-        return groupingByAndAllMaxBy(keyExtractor, resultSupplier, downstream, Map.Entry.comparingByValue());
+    public static <T, M extends Collection<Map.Entry<K, V>>, K, V extends Comparable<? super V>> Collector<T, ?, M> groupingByAndAllMaxByValue(Function<? super T, ? extends K> keyExtractor, Supplier<M> resultSupplier, Collector<T, ?, V> downstream) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -389,13 +299,8 @@ public class CollectorsUtils {
      * @param <V>          the type of the values
      * @return a {@link Collector} implementing the all max extraction in a given collection
      */
-    public static <T, K, V extends Comparable<? super V>> Collector<T, ?, Set<Map.Entry<K, V>>>
-    groupingByAndAllMaxByValue(Function<? super T, ? extends K> keyExtractor,
-                               Collector<T, ?, V> downstream) {
-        Objects.requireNonNull(keyExtractor);
-        Objects.requireNonNull(downstream);
-
-        return groupingByAndAllMaxBy(keyExtractor, downstream, Map.Entry.<K, V>comparingByValue());
+    public static <T, K, V extends Comparable<? super V>> Collector<T, ?, Set<Map.Entry<K, V>>> groupingByAndAllMaxByValue(Function<? super T, ? extends K> keyExtractor, Collector<T, ?, V> downstream) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -413,14 +318,8 @@ public class CollectorsUtils {
      * @param <V>          the type of the values
      * @return a {@link Collector} implementing the all max extraction in a given collection
      */
-    public static <T, K, V> Collector<T, ?, Set<Map.Entry<K, V>>>
-    groupingByAndAllMaxByValue(Function<? super T, ? extends K> keyExtractor,
-                               Collector<T, ?, V> downstream,
-                               Comparator<V> comparator) {
-        Objects.requireNonNull(keyExtractor);
-        Objects.requireNonNull(downstream);
-
-        return groupingByAndAllMaxBy(keyExtractor, downstream, Map.Entry.<K, V>comparingByValue(comparator));
+    public static <T, K, V> Collector<T, ?, Set<Map.Entry<K, V>>> groupingByAndAllMaxByValue(Function<? super T, ? extends K> keyExtractor, Collector<T, ?, V> downstream, Comparator<V> comparator) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -434,19 +333,8 @@ public class CollectorsUtils {
      * @param <U>    the type of the elements of the returned stream
      * @return a collector that builds a stream of the elements in relation
      */
-    public static <T, U> Collector<T, ?, Stream<Stream<U>>>
-    mapToStream(Function<? super T, ? extends Collection<U>> mapper) {
-        Objects.requireNonNull(mapper);
-
-        return Collector.<T, Stream.Builder<Stream<U>>, Stream<Stream<U>>>of(
-                Stream::builder,
-                (builder, element) -> builder.accept(mapper.apply(element).stream()),
-                (builder1, builder2) -> {
-                    builder2.build().forEach(builder1);
-                    return builder1;
-                },
-                Stream.Builder::build
-        );
+    public static <T, U> Collector<T, ?, Stream<Stream<U>>> mapToStream(Function<? super T, ? extends Collection<U>> mapper) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -459,19 +347,8 @@ public class CollectorsUtils {
      * @param <U>    the type of the elements of the returned stream
      * @return a collector that builds a stream of the elements in relation
      */
-    public static <T, U> Collector<T, ?, Stream<Stream<U>>>
-    toStream(Function<? super T, ? extends Stream<U>> mapper) {
-        Objects.requireNonNull(mapper);
-
-        return Collector.<T, Stream.Builder<Stream<U>>, Stream<Stream<U>>>of(
-                Stream::builder,
-                (builder, element) -> builder.accept(mapper.apply(element)),
-                (builder1, builder2) -> {
-                    builder2.build().forEach(builder1);
-                    return builder1;
-                },
-                Stream.Builder::build
-        );
+    public static <T, U> Collector<T, ?, Stream<Stream<U>>> toStream(Function<? super T, ? extends Stream<U>> mapper) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -483,16 +360,7 @@ public class CollectorsUtils {
      * @return a collector that builds a stream of the elements
      */
     public static <T> Collector<T, ?, Stream<T>> mapToStream() {
-
-        return Collector.<T, Stream.Builder<T>, Stream<T>>of(
-                Stream::builder,
-                Stream.Builder::accept,
-                (builder1, builder2) -> {
-                    builder2.build().forEach(builder1);
-                    return builder1;
-                },
-                Stream.Builder::build
-        );
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -508,23 +376,7 @@ public class CollectorsUtils {
      * @return a collector that builds a stream of the elements in relation
      */
     public static <T, U> Collector<T, ?, Stream<U>> flattenToStream(Function<T, ? extends Collection<U>> mapper) {
-        Objects.requireNonNull(mapper);
-
-// This implementation can throw a StackOverflowExceptions for large streams
-//        return Collectors.reducing(
-//                Stream.empty(),
-//                t -> mapper.apply(t).stream(),
-//                (stream1, stream2) -> Stream.of(stream1, stream2).flatMap(identity()));
-
-        return Collector.<T, Stream.Builder<U>, Stream<U>>of(
-                Stream::builder,
-                (builder, element) -> mapper.apply(element).forEach(builder),
-                (builder1, builder2) -> {
-                    builder2.build().forEach(builder1);
-                    return builder1;
-                },
-                Stream.Builder::build
-        );
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -539,17 +391,7 @@ public class CollectorsUtils {
      * @return a collector that builds a stream of the elements in relation
      */
     public static <T, U> Collector<T, ?, Stream<U>> flatMapToStream(Function<? super T, ? extends Stream<U>> mapper) {
-        Objects.requireNonNull(mapper);
-
-        return Collector.<T, Stream.Builder<U>, Stream<U>>of(
-                Stream::builder,
-                (builder, element) -> mapper.apply(element).forEach(builder),
-                (builder1, builder2) -> {
-                    builder2.build().forEach(builder1);
-                    return builder1;
-                },
-                Stream.Builder::build
-        );
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -562,14 +404,8 @@ public class CollectorsUtils {
      * @param <D>            the type of the values of the built map
      * @return a collector that builds a stream of entries
      */
-    public static <T, K, D> Collector<T, ?, Stream<Map.Entry<K, D>>>
-    toMapThenStream(Collector<T, ?, Map<K, D>> toMapCollector) {
-        Objects.requireNonNull(toMapCollector);
-
-        return collectingAndThen(
-                toMapCollector,
-                toStreamOfEntries()
-        );
+    public static <T, K, D> Collector<T, ?, Stream<Map.Entry<K, D>>> toMapThenStream(Collector<T, ?, Map<K, D>> toMapCollector) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -583,16 +419,8 @@ public class CollectorsUtils {
      * @param valueMapper a mapping function to produce values
      * @return a collector that builds a stream of entries
      */
-    public static <T, K, U> Collector<T, ?, Stream<Map.Entry<K, U>>>
-    toMapThenStream(Function<? super T, ? extends K> keyMapper,
-                    Function<? super T, ? extends U> valueMapper) {
-        Objects.requireNonNull(keyMapper);
-        Objects.requireNonNull(valueMapper);
-
-        return collectingAndThen(
-                toMap(keyMapper, valueMapper),
-                toStreamOfEntries()
-        );
+    public static <T, K, U> Collector<T, ?, Stream<Map.Entry<K, U>>> toMapThenStream(Function<? super T, ? extends K> keyMapper, Function<? super T, ? extends U> valueMapper) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -606,12 +434,8 @@ public class CollectorsUtils {
      * @param <D>        the type of the values of the built map
      * @return a collector that builds a stream of entries
      */
-    public static <T, K, D> Collector<T, ?, Stream<Map.Entry<K, D>>>
-    groupingByThenStream(Function<? super T, ? extends K> classifier, Collector<? super T, ?, D> downstream) {
-        Objects.requireNonNull(classifier);
-        Objects.requireNonNull(downstream);
-
-        return toMapThenStream(groupingBy(classifier, downstream));
+    public static <T, K, D> Collector<T, ?, Stream<Map.Entry<K, D>>> groupingByThenStream(Function<? super T, ? extends K> classifier, Collector<? super T, ?, D> downstream) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -623,11 +447,8 @@ public class CollectorsUtils {
      * @param <K>        the type of the keys of the built map
      * @return a collector that builds a stream of entries
      */
-    public static <T, K> Collector<T, ?, Stream<Map.Entry<K, List<T>>>>
-    groupingByThenStream(Function<? super T, ? extends K> classifier) {
-        Objects.requireNonNull(classifier);
-
-        return toMapThenStream(groupingBy(classifier));
+    public static <T, K> Collector<T, ?, Stream<Map.Entry<K, List<T>>>> groupingByThenStream(Function<? super T, ? extends K> classifier) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -642,10 +463,7 @@ public class CollectorsUtils {
      * @return a collector that creates a map where the values are the most frequent values in the provided stream
      */
     public static <K, V> Collector<Map.Entry<K, Stream<V>>, ?, Map<K, Map.Entry<V, Long>>> maxEntryValueByCounting() {
-        return toMap(
-                Map.Entry::getKey,
-                entry -> entry.getValue().collect(maxByCounting()).get()
-        );
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -657,10 +475,8 @@ public class CollectorsUtils {
      * @param <U>          c
      * @return a collector that flatmaps a stream
      */
-    public static <T, U> Collector<T, ?, Stream<U>>
-    flatMapping(Function<? super T, ? extends Stream<U>> streamMapper) {
-
-        return flatMapping(streamMapper, mapToStream(), identity());
+    public static <T, U> Collector<T, ?, Stream<U>> flatMapping(Function<? super T, ? extends Stream<U>> streamMapper) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -675,11 +491,8 @@ public class CollectorsUtils {
      * @param <R>          the elements collected from the streams of <code>U</code>
      * @return a collector that flatmaps a stream
      */
-    public static <T, U, R extends Stream<U>> Collector<T, ?, Stream<U>>
-    flatMapping(Function<? super T, ? extends Stream<U>> streamMapper,
-                Collector<? super Stream<U>, ?, ? extends Stream<R>> downstream) {
-
-        return flatMapping(streamMapper, downstream, identity());
+    public static <T, U, R extends Stream<U>> Collector<T, ?, Stream<U>> flatMapping(Function<? super T, ? extends Stream<U>> streamMapper, Collector<? super Stream<U>, ?, ? extends Stream<R>> downstream) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -697,14 +510,7 @@ public class CollectorsUtils {
      * @param <R>          the elements collected from the streams of <code>V</code>
      * @return a collector that flatmaps a stream
      */
-    public static <T, U, V, R extends Stream<V>> Collector<T, ?, Stream<U>>
-    flatMapping(Function<? super T, ? extends Stream<V>> streamMapper,
-                Collector<? super Stream<V>, ?, ? extends Stream<R>> downstream,
-                Function<R, ? extends Stream<? extends U>> mapper) {
-
-        return collectingAndThen(
-                mapping(streamMapper, downstream),
-                r -> r.flatMap(mapper)
-        );
+    public static <T, U, V, R extends Stream<V>> Collector<T, ?, Stream<U>> flatMapping(Function<? super T, ? extends Stream<V>> streamMapper, Collector<? super Stream<V>, ?, ? extends Stream<R>> downstream, Function<R, ? extends Stream<? extends U>> mapper) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }
